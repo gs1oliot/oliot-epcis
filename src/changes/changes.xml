@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/changes/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+	<properties>
+		<title>Changes epcis-repository</title>
+	</properties>
+	<body>
+		<release version="0.6.0" date="2014-07-07"
+			description="Initial Cassandra version in Oliot framework for the Internet of Things."></release>
+		<release version="0.5" date="2010-12-28" description="Bug fix and feature release">
+			<action dev="steybem" date="2010-08-11" type="fix">
+				Fixed parsing of query parameter with more than one value in the list
+				of strings when querying for extension fields (e.g., EQ_fieldname).
+			</action>
+			<action dev="kefalakis" date="2010-07-20" type="add"
+				due-to="Nikos Kefalakis">
+				Added support for capturing EPCIS MasterData. Please see the user-guide
+				or the mailing list for details on how to use the new interface.
+			</action>
+			<action dev="steybem" date="2010-07-06" type="update">
+				Updated CXF dependencies to 2.2.9 and JAXB to 2.2
+			</action>
+			<action dev="steybem" date="2010-05-21" type="update" due-to="Adrien Laurence">
+				Added support for storing milliseconds of eventTime and recordTime
+				to the repository. Fixes issues with fine-grained time queries
+				and with rounded time values in query responses.
+			</action>
+			<action dev="steybem" date="2010-05-16" type="add">
+				Added a JSP with an HTML form to quickly debug and submit capture
+				requests directly via browser.
+			</action>
+			<action dev="steybem" date="2010-05-16" type="add">
+				Introduced JSP pages for the repository to show the requested
+				information for browser GET requests.
+			</action>
+			<action dev="steybem" date="2010-05-16" type="fix">
+				Fixed handling of dbReset scripts. Furthermore, use Hibernate to
+				run the scripts (removes the need of deprecated method).
+			</action>
+			<action dev="steybem" date="2009-12-31" type="update">
+				Disabled the Hibernate query_cache since we're mainly running
+				updates/inserts and no queries.
+			</action>
+			<action dev="steybem" date="2009-07-28" type="update">
+				Set the antiResourceLocking flag in the application context to
+				true in order to prevent JAR file locking and allow clean
+				undeploys on Windows systems.
+			</action>
+			<action dev="steybem" date="2009-07-26" type="fix" issue="2495950"
+				due-to="Oscar Saiz">
+				Use correct number of SQL joins for queries with two or more
+				EQ_fieldname parameters.
+			</action>
+		</release>
+		<release version="0.4.2" date="2009-02-03" description="Bug fix release">
+			<action dev="steybem" type="fix" issue="2379949"
+				due-to="Marc-Antoine Mouilleron">
+				Subscriptions not tolerant to server restart.
+			</action>
+			<action dev="steybem" type="fix" issue="2379542" due-to="Nektarios Leontiadis">
+				Fixed query subscription error (unable to serialize and store
+				objects of type ArrayOfString to database)
+			</action>
+			<action dev="roduner" type="fix">
+				Updated demo data. Example events are now compliant with
+				EPCglobal's Core Business Vocabulary.
+			</action>
+			<action dev="roduner" type="fix">
+				Added "resource-ref" mapping in web.xml for easier
+				deployment in containers other than Tomcat.
+			</action>
+		</release>
+		<release version="0.4.1" date="2008-09-02" description="Bug fix release">
+			<action dev="steybem" type="fix" issue="2088556">
+				Results of subscribed queries were not reported correctly.
+			</action>
+			<action dev="steybem" type="fix" issue="2088551">
+				Subscriptions were not stored in the database.
+			</action>
+		</release>
+		<release version="0.4.0" date="2008-07-29"
+			description="Project name changed to Fosstrak">
+			<action dev="roduner" type="update">
+				Renamed packages from org.accada to org.fosstrak.
+			</action>
+		</release>
+		<release version="0.3.2" date="2008-06-04" description="Bug fix release">
+			<action dev="steybem" type="fix" issue="1964350">
+				Fixed parsing of values for extension fields.
+			</action>
+			<action dev="roduner" type="fix">
+				Fixed epcis_demo_data.sql. (Demo data did not match latest schema.)
+			</action>
+		</release>
+		<release version="0.3.1" date="2008-03-24" description="Bug fix release">
+			<action dev="steybem" type="fix">
+				Fixed inconsistent capitalization of table names, which caused
+				problems on case-sensitive platforms (e.g., Linux).
+			</action>
+		</release>
+		<release version="0.3.0" date="2008-03-20"
+			description="Feature release: improved performance and interoperability">
+			<!-- general changes -->
+			<action dev="steybem" type="add">
+				Introduced Spring IoC container for bean wiring and
+				application initialization.
+			</action>
+			<action dev="steybem" type="add">
+				Introduced interfaces wherever reasonable (program to an
+				interface, not an implementation), and improved
+				extensibility and interoperability through application
+				layering.
+			</action>
+			<action dev="steybem" type="add">
+				Added a context listener which performs the
+				initialization work (e.g., initializing the logging
+				subsystem) when the application is deployed.
+			</action>
+			<action dev="steybem" type="add">
+				Added support for storing custom, non-standard
+				vocabulary fields.
+			</action>
+			<action dev="steybem" type="update">
+				Improved and centralized all configuration parameters in
+				a consistent application.properties file.
+			</action>
+			<action dev="steybem" type="update">
+				Use StringBuilder instead of StringBuffer or string
+				concatenation wherever reasonable, for improved
+				performance.
+			</action>
+			<action dev="steybem" type="update">
+				Use the commons-logging API as a wrapper for Log4J for
+				all the log statements.
+			</action>
+			<action dev="steybem" type="update">
+				Added database indexes wherever reasonable for improved
+				performance.
+			</action>
+			<action dev="steybem" type="update">
+				Moved EPCIS WSDL and schema files to module epcis-commons.
+			</action>
+			<action dev="steybem" type="remove">
+				Removed 'vocabularies' table from the database schema -
+				the mapping of vocabulary names to the corresponding
+				database table is now handled in the code.
+			</action>
+			<action dev="steybem" type="add">
+				Added utility class for parsing and printing QueryResults.
+			</action>
+			<action dev="steybem" type="update">
+				Replaced Axis-generated Web service stubs with
+				CXF-generated Java beans.
+			</action>
+			<action dev="steybem" type="fix">
+				Fixed TimeParser to catch any exceptions caused by
+				invalid input and wrap them into QueryParameterExceptions.
+			</action>
+			<!-- changes to query interface -->
+			<action dev="steybem" type="add">
+				Query Interface: replaced the Web service framework
+				Apache Axis 1 with Apache CXF which prevents many
+				problems and avoids many workarounds implied by Axis,
+				and improves performance.
+			</action>
+			<action dev="steybem" type="add">
+				Query Interface: introduced a JAXB data binding to map
+				Web service requests and responses to Java beans.
+			</action>
+			<action dev="steybem" type="add">
+				Query Interface: added support for HTTPS binding for
+				query callback interface.
+			</action>
+			<action dev="steybem" type="add">
+				Query Interface: added support for querying custom,
+				non-standard vocabulary fields.
+			</action>
+			<action dev="steybem" type="add">
+				Query Interface: added a servlet to perform the
+				initialization work for the QueryOperationsModule in
+				cases where Spring cannot be used.
+			</action>
+			<action dev="steybem" type="add">
+				Query Interface: added support for database transactions
+				- queries which modify the database (e.g., add
+				vocabularies) either succeed or fail in their entirety.
+			</action>
+			<action dev="steybem" type="update">
+				Query Interface: standing query results are returned
+				within an EPCISQueryDocument whose EPCISBody contains
+				the response payload XML, as specified in the EPCIS
+				standard.
+			</action>
+			<action dev="steybem" type="update">
+				Query Interface: callback of results for standing
+				queries is retried (up to 3 times) if the destination
+				cannot be reached or in cases of network problems.
+			</action>
+			<action dev="steybem" type="update">
+				Query Interface: improved handling of
+				children-relationships for masterdata vocabularies.
+			</action>
+			<action dev="steybem" type="fix">
+				Query Interface: throw QueryParameterException for any
+				invalid user-provided query parameter values.
+			</action>
+			<action dev="steybem" type="fix">
+				Query Interface: fixed issues with not releasing
+				database connections which prevented sessions from being
+				closed under certain conditions and crashed the entire
+				repository.
+			</action>
+			<action dev="steybem" type="fix">
+				Query Interface: 'getVendorVersion' must return a valid
+				URI-formated value.
+			</action>
+			<action dev="steybem" type="fix">
+				Query Interface: ordering of events according to the
+				'orderBy' and 'orderDirection' query parameters must be
+				global across all events.
+			</action>
+			<action dev="steybem" type="fix">
+				Query Interface: restriction of events according to
+				'eventCountLimit' must be global across all events.
+			</action>
+			<action dev="steybem" type="fix" issue="1876336">
+				Query Interface: query returns events out of specified
+				time frame.
+			</action>
+			<!-- changes to capture interface -->
+			<action dev="steybem" type="add">
+				Capture Interface: added initialization logic to the
+				CaptureOperationsServlet in cases where Spring cannot be
+				used.
+			</action>
+			<action dev="steybem" type="add" due-to="Sean Wellington">
+				Capture Interface: introduced Hibernate which replaces
+				the JDBC statements for persisting events to the
+				database, adds an additional database abstraction layer,
+				and thus allows for the possibility of integrating other
+				(non-MySQL) data stores.
+			</action>
+			<action dev="steybem" type="add" due-to="Sean Wellington">
+				Capture Interface: added support for database
+				transactions - requests either succeed or fail in their
+				entirety.
+			</action>
+			<action dev="steybem" type="update" due-to="Sean Wellington">
+				Set the "defaultAutoCommit" property of the database
+				connection pool to false.
+			</action>
+			<action dev="steybem" type="update">
+				Capture Interface: check value of the
+				'eventTimeZoneOffset' field to match the expected
+				pattern.
+			</action>
+			<action dev="steybem" type="update">
+				Capture Interface: check elements in the 'epcList',
+				'childEPCs', and 'parentID' fields to match the pure
+				identity URI pattern as defined in EPCglobal Tag Data
+				Standard 1.3.1.
+			</action>
+			<action dev="steybem" type="fix">
+				Capture Interface: return HTTP status code different
+				from 200 for any invalid user-provided input (e.g.,
+				invalid XML schema, invalid XML values).
+			</action>
+		</release>
+		<release version="0.2.3" date="2007-12-14" description="Bug fix release">
+			<action dev="steybem" type="fix" issue="1789785" due-to="Sean Wellington">
+				Made CaptureOperationsModule more thread-safe and made
+				sure that database resources are released under all
+				circumstances.
+			</action>
+			<action dev="steybem" type="add" due-to="Sean Wellington">
+				Extracted Tomcat-specific initialization logic from
+				CaptureOperationsModule into a new class
+				CaptureOperationsServlet, such that
+				CaptureOperationsModule can be used in other application
+				servers.
+			</action>
+			<action dev="steybem" type="fix" issue="1844046">
+				MATCH_anyEPC query did not match against URIs in the
+				parentID field of Transaction- and AggregationEvents.
+			</action>
+			<action dev="steybem" type="fix" issue="1844041">
+				parentID field of TransactionEvents was ignored in
+				CaptureOperationsModule.
+			</action>
+			<action dev="steybem" type="fix" issue="1789796">
+				Fixed storing and retrieving of time values to/from
+				repository. Time zone offset does not need to be
+				subtracted/added from event time or record time.
+			</action>
+			<action dev="steybem" type="fix">
+				Fixed QuerySchedule to correctly handle leap years.
+			</action>
+			<action dev="steybem" type="add">
+				Added test case for TimeParser.
+			</action>
+			<action dev="steybem" type="fix" issue="1845531">
+				Corrected serialization of time values into XML.
+			</action>
+			<action dev="steybem" type="fix" issue="1789784">
+				Fixed parsing of event time when time value does not
+				have exactly three digits for millisecond.
+			</action>
+		</release>
+		<release version="0.2.2" date="2007-08-31" description="Bug fix release">
+			<action dev="steybem" type="fix" issue="1781884">
+				HTTP Capture Interface in 0.2.1 was not EPCIS compliant.
+				Fixed capture operation which now expects the
+				EPCISDocument as payload in the HTTP POST request.
+			</action>
+			<action dev="steybem" type="fix" issue="1781885">
+				Fixed Null pointer exception.
+			</action>
+		</release>
+		<release version="0.2.1" date="2007-08-10" description="Bug fix release">
+			<action dev="steybem" type="fix" issue="1725569">
+				Scheduled queries were not restored properly after a
+				service restart.
+			</action>
+			<action dev="roduner" type="update">
+				Changed demo database to make all examples shown in
+				Query Client work.
+			</action>
+			<action dev="steybem" type="update">
+				Changed build environment: Added profiles (dev, prod) to
+				the build environment with specific settings for a
+				development and a productive environment (you can
+				activate a profile by adding e.g. "-Denv=dev" to your
+				mvn build command).
+			</action>
+		</release>
+		<release version="0.2.0" date="2007-04-27" description="Initial release">
+			<action type="add">Initial code release.</action>
+		</release>
+        
+    </body>
+</document>
